@@ -1,0 +1,171 @@
+/* ---------------------------estilos gerais--------------------------- */
+body {
+  margin: 0; /* remove margens padrão */
+  padding: 0; /* remove padding padrão */
+  background-color: #8a0f1a; /* cor de fundo vermelha */
+  text-align: center; /* centraliza texto */
+  padding-top: 80px; /* espaço no topo para o header fixo */
+}
+
+/* ---------------------------header--------------------------- */
+header {
+  position: fixed; /* fixa no topo */
+  top: 0;
+  left: 0;
+  width: 100%; /* ocupa toda largura */
+  z-index: 1000; /* fica acima de outros elementos */
+  text-align: center;
+  font-weight: 900; /* texto em negrito */
+  background-color: #000000; /* fundo preto */
+  border-bottom: 20px solid #ffffff; /* borda inferior branca */
+  box-sizing: border-box;
+  color: #8a0f1a; /* cor do texto */
+  transition: all 0.3s ease; /* animação suave de transição */
+}
+
+header h4 {
+  transition: opacity 0.3s ease; /* animação da opacidade */
+}
+
+header.scrolled {
+  border-bottom: none; /* remove borda quando scrolled */
+}
+
+header.scrolled h4 {
+  opacity: 0; /* esconde h4 quando scrolled */
+}
+
+/* ---------------------------container principal--------------------------- */
+.container-principal {
+  text-align: left;
+  margin-top: 200px; /* espaço do header */
+  display: flex;
+  flex-direction: column; /* organiza os cards em coluna */
+  gap: 40px; /* espaço entre os cards */
+  padding: 40px;
+}
+
+/* ---------------------------cards--------------------------- */
+.card {
+  display: flex;
+  align-items: center; /* centraliza vertical */
+  width: 100%;
+  gap: 450px; /* espaço entre elementos internos */
+  max-width: 750px; /* largura máxima do card */
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow: hidden; /* esconde excesso de conteúdo */
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: row; /* organiza imagem e texto em linha */
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* anima transform e cor */
+  cursor: pointer; /* muda cursor ao passar mouse */
+}
+
+.card p {
+  margin: 0;
+  font-size: 26px; /* tamanho do texto */
+  font-weight: bold;
+  flex: 1; /* ocupa espaço disponível */
+  white-space: nowrap; /* não quebra linha */
+  transition: all 0.5s ease; /* anima todas mudanças */
+}
+
+/* ---------------------------hover dos cards--------------------------- */
+.card:hover .card-inner {
+  transform: scale(1.2); /* aumenta tamanho */
+  background-color: #000000; /* muda fundo */
+  color: whitesmoke; /* muda cor do texto */
+}
+
+.card-inner img {
+  width: 200px; /* largura da imagem */
+  height: 200px; /* altura da imagem */
+  object-fit: cover; /* mantém proporção e corta excesso */
+}
+
+.card:hover p {
+  font-size: 30px; /* aumenta fonte ao hover */
+  margin-left: 200px; /* desloca texto */
+}
+
+/* ---------------------------sobreposição pós click--------------------------- */
+#sobreposição {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* largura da viewport */
+  height: 100vh; /* altura da viewport */
+  background-color: rgba(0, 0, 0, 0.6); /* fundo semi-transparente */
+  backdrop-filter: blur(10px); /* desfoque do fundo */
+  display: none; /* inicia invisível */
+  justify-content: center; /* centraliza horizontal */
+  align-items: center; /* centraliza vertical */
+  z-index: 3000; /* acima de tudo */
+  cursor: pointer; /* cursor de clique */
+}
+
+#sobreposição.active {
+  display: flex; /* mostra quando ativo */
+  animation: fadeIn 0.3s ease forwards; /* anima fadeIn */
+}
+
+/* ---------------------------card expandido--------------------------- */
+.card-expandido {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* espaço interno */
+  background-color: #000;
+  color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 700px; /* largura máxima */
+  width: 90%; /* largura relativa */
+  height: 320px; /* altura fixa */
+  overflow: hidden; /* esconde excesso */
+  transform: scale(0.9); /* inicia pequeno */
+  opacity: 0; /* inicia transparente */
+  transition: all 0.3s ease; /* anima transform e opacidade */
+}
+
+#sobreposição.active .card-expandido {
+  transform: scale(1); /* expande quando ativo */
+  opacity: 1; /* fica visível */
+}
+
+.card-expandido img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover; /* mantém proporção */
+  border-radius: 10px;
+}
+
+.card-expandido .texto-artista {
+  text-align: left;
+  max-height: 280px; /* limita altura do texto */
+  overflow-y: auto; /* scroll vertical se necessário */
+  padding-right: 10px; /* espaço para scroll */
+}
+
+.card-espandido h2 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.card-expandido p {
+  margin: 0;
+  line-height: 1.4em; /* espaçamento entre linhas */
+  font-size: 18px;
+}
+
+/* ---------------------------animação--------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
